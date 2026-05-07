@@ -45,6 +45,7 @@ body::before {
   display: flex; align-items: center; gap: 0.5rem;
   font-size: 0.8rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
   color: var(--g8); text-decoration: none; opacity: 0.7;
+  transition: opacity 0.2s, color 0.2s;
 }
 .back-btn:hover { opacity: 1; color: var(--g7); }
 .back-arrow { font-size: 1.1rem; }
@@ -100,9 +101,9 @@ body::before {
   padding: 0.65rem 0.85rem;
 }
 
-.card-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1rem;
+/* FIX: NUR DIESE ZEILE WAR FALSCH */
+.clan-block main .rank-group:nth-of-type(3) > div.member-grid:last-child {
+  margin-bottom: 0;
 }
 
 /* ROLE */
@@ -116,62 +117,149 @@ body::before {
 
 <body>
 
+<canvas class="snow-canvas" id="snow"></canvas>
+
 <div class="topbar">
   <a href="index.html" class="topbar-logo">Tanneclan</a>
-  <a href="index.html" class="back-btn">← Zurück</a>
+  <a href="index.html" class="back-btn"><span class="back-arrow">←</span> Zurück</a>
 </div>
 
 <div class="page-header">
+  <div class="page-badge">⚔ HugoSMP ⚔</div>
   <h1 class="page-title">Mitglieder</h1>
+  <p class="page-sub">Alle Mitglieder des Tanneclans</p>
 </div>
+
+<div class="glow-line"></div>
 
 <div class="content">
 
-<!-- TANNE MAIN -->
-<div class="clan-block">
+  <!-- TANNE MAIN -->
+  <div class="clan-block main">
 
-  <div class="clan-block-header">
-    <div class="clan-block-line"></div>
-    <span class="clan-block-name">Tanne Main</span>
-    <div class="clan-block-line"></div>
+    <div class="clan-block-header reveal">
+      <div class="clan-block-line"></div>
+      <span class="clan-block-name">Tanne Main</span>
+      <span class="main-star">Hauptclan</span>
+      <div class="clan-block-line"></div>
+    </div>
+
+    <div class="rank-group reveal">
+      <div class="rank-label">Leader</div>
+      <div class="member-grid">
+        <div class="member-card">
+          <div class="skin"></div>
+          <div class="card-info">
+            <div class="card-name">Tannebenn</div>
+            <span class="card-role role-leader">Leader | HugoSMP Mod</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rank-group reveal">
+      <div class="rank-label">Co-Leader</div>
+      <div class="member-grid">
+        <div class="member-card">
+          <div class="skin"></div>
+          <div class="card-info">
+            <div class="card-name">Turmeline</div>
+            <span class="card-role role-co-leader">Co-Leader</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rank-group reveal">
+      <div class="rank-label">Moderator</div>
+      <div class="member-grid">
+        <div class="member-card">
+          <div class="skin"></div>
+          <div class="card-info">
+            <div class="card-name">Pfoersich</div>
+            <span class="card-role role-mod">Moderator</span>
+          </div>
+        </div>
+
+        <div class="member-card">
+          <div class="skin"></div>
+          <div class="card-info">
+            <div class="card-name">Luke2042</div>
+            <span class="card-role role-mod">Moderator</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FIX WAR: HIER WAR DAS EXTRA </div> ENTFERNT -->
+
+    <div class="rank-group reveal">
+      <div class="rank-label">Member</div>
+      <div class="member-grid">
+        <div class="member-card"><div class="skin"></div><div class="card-info"><div class="card-name">Puffa05</div></div></div>
+        <div class="member-card"><div class="skin"></div><div class="card-info"><div class="card-name">JemandGHG</div></div></div>
+      </div>
+    </div>
+
   </div>
 
-  <div class="member-grid">
-    <div class="member-card"><div class="card-name">Tannebenn</div></div>
-    <div class="member-card"><div class="card-name">Turmeline</div></div>
-    <div class="member-card"><div class="card-name">Pfoersich</div></div>
-    <div class="member-card"><div class="card-name">Luke2042</div></div>
+  <div class="glow-line" style="margin: 1rem 0;"></div>
+
+  <!-- T2NNE -->
+  <div class="clan-block">
+    <div class="clan-block-header reveal">
+      <div class="clan-block-line"></div>
+      <span class="clan-block-name">T2nne</span>
+      <div class="clan-block-line"></div>
+    </div>
+  </div>
+
+  <div class="glow-line" style="margin: 1rem 0;"></div>
+
+  <!-- T3NNE -->
+  <div class="clan-block">
+    <div class="clan-block-header reveal">
+      <div class="clan-block-line"></div>
+      <span class="clan-block-name">T3nne</span>
+      <div class="clan-block-line"></div>
+    </div>
   </div>
 
 </div>
 
-<!-- T2NNE -->
-<div class="clan-block">
-  <div class="clan-block-header">
-    <div class="clan-block-line"></div>
-    <span class="clan-block-name">T2nne</span>
-    <div class="clan-block-line"></div>
-  </div>
+<footer>© 2026 Tanneclan · HugoSMP · Copyright Pfoersich</footer>
 
-  <div class="member-grid">
-    <div class="member-card"><div class="card-name">Fastdeath05</div></div>
-  </div>
-</div>
+<script>
+const canvas = document.getElementById('snow');
+const ctx = canvas.getContext('2d');
+let W, H;
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight;}
+resize();addEventListener('resize',resize);
 
-<!-- T3NNE -->
-<div class="clan-block">
-  <div class="clan-block-header">
-    <div class="clan-block-line"></div>
-    <span class="clan-block-name">T3nne</span>
-    <div class="clan-block-line"></div>
-  </div>
+const flakes = Array.from({length:130},()=>({
+x:Math.random()*innerWidth,
+y:Math.random()*innerHeight,
+r:1+Math.random()*2.5,
+sx:(Math.random()-0.5)*0.45,
+sy:0.35+Math.random()*0.75,
+o:0.15+Math.random()*0.5
+}));
 
-  <div class="member-grid">
-    <div class="member-card"><div class="card-name">Suchend</div></div>
-  </div>
-</div>
-
-</div>
+function draw(){
+ctx.clearRect(0,0,W,H);
+ctx.fillStyle="#fff";
+for(const f of flakes){
+ctx.globalAlpha=f.o;
+ctx.beginPath();
+ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
+ctx.fill();
+f.x+=f.sx;f.y+=f.sy;
+if(f.y>H){f.y=-5;f.x=Math.random()*W;}
+}
+requestAnimationFrame(draw);
+}
+draw();
+</script>
 
 </body>
 </html>
