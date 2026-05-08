@@ -329,9 +329,17 @@ section {
 }
 
 footer {
-  position: relative; z-index: 1; text-align: center; padding: 2rem;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
   border-top: 1px solid rgba(0, 100, 0, 1);
-  font-size: 0.30rem; font-weight: 900; color: var(--g8); opacity: 0.3; letter-spacing: 2px; text-transform: uppercase;
+  font-size: 0.30rem;
+  font-weight: 900;
+  color: rgba(0, 70, 0, 1); /* dunkleres Grün */
+  opacity: 1; /* optional, sonst bleibt es durchscheinend */
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .reveal { opacity: 0; transform: translateY(35px); transition: opacity 0.65s ease, transform 0.65s ease; }
