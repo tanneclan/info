@@ -1,1 +1,15 @@
+<button id="linkBtn">Minecraft verbinden</button>
 
+<p id="codeText"></p>
+
+<script>
+document.getElementById("linkBtn").onclick = async () => {
+
+    const res = await fetch("https://DEINBACKEND.up.railway.app/create-code");
+
+    const data = await res.json();
+
+    document.getElementById("codeText").innerText =
+        "/link " + data.code;
+};
+</script>
