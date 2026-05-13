@@ -1,23 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-  <title>Hugo SMP Link</title>
+  <meta charset="UTF-8">
+  <title>Minecraft Login</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .box {
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 12px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 6px;
+      outline: none;
+    }
+
+    button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background: #4caf50;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    #result {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #ccc;
+    }
+  </style>
 </head>
+
 <body>
 
-  <h1>Account verbinden</h1>
+  <div class="box">
+    <h2>Minecraft Login</h2>
 
-  <button onclick="createCode()">Minecraft verbinden</button>
+    <input id="mcName" placeholder="Minecraft Name">
 
-  <p id="output"></p>
+    <button onclick="login()">Code generieren</button>
+
+    <p id="result"></p>
+  </div>
 
   <script>
-    async function createCode() {
-      const res = await fetch("https://DEIN-BACKEND.up.railway.app/create-code");
-      const data = await res.json();
+    async function login() {
+      const name = document.getElementById("mcName").value;
 
-      document.getElementById("output").innerText =
-        "Gib im Spiel ein: /link " + data.code;
+      if (!name) {
+        document.getElementById("result").innerText = "Bitte Namen eingeben";
+        return;
+      }
+
+      try {
+        const res = await fetch("https://mc-link-backend-production.up.railway.app/create-code", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ name })
+        });
+
+        const data = await res.json();
+
+        document.getElementById("result").innerText =
+          "Dein Code: " + data.code;
+
+      } catch (err) {
+        console.log(err);
+        document.getElementById("result").innerText =
+          "Server nicht erreichbar";
+      }
     }
   </script>
 
