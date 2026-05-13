@@ -1,15 +1,25 @@
-<button id="linkBtn">Minecraft verbinden</button>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hugo SMP Link</title>
+</head>
+<body>
 
-<p id="codeText"></p>
+  <h1>Account verbinden</h1>
 
-<script>
-document.getElementById("linkBtn").onclick = async () => {
+  <button onclick="createCode()">Minecraft verbinden</button>
 
-    const res = await fetch("https://DEINBACKEND.up.railway.app/create-code");
+  <p id="output"></p>
 
-    const data = await res.json();
+  <script>
+    async function createCode() {
+      const res = await fetch("https://DEIN-BACKEND.up.railway.app/create-code");
+      const data = await res.json();
 
-    document.getElementById("codeText").innerText =
-        "/link " + data.code;
-};
-</script>
+      document.getElementById("output").innerText =
+        "Gib im Spiel ein: /link " + data.code;
+    }
+  </script>
+
+</body>
+</html>
