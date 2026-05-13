@@ -16,9 +16,7 @@
 
 :root {
   --g1: #060f06;
-  --g3: #14421a;
   --g4: #1a5c22;
-  --g5: #217a2c;
   --g6: #2da83c;
   --g7: #3fd155;
   --g8: #7ee88f;
@@ -29,14 +27,8 @@ body {
   font-family: 'Exo 2', sans-serif;
   background: var(--g1);
   color: white;
-  overflow: hidden;
   min-height: 100vh;
-}
-
-canvas {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
+  overflow: hidden;
 }
 
 body::before {
@@ -44,20 +36,57 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 50% at 15% 85%, rgba(20,66,26,0.4) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 70% at 85% 15%, rgba(29,92,34,0.25) 0%, transparent 60%);
+    radial-gradient(ellipse 70% 50% at 15% 85%, rgba(20,66,26,0.4), transparent 60%),
+    radial-gradient(ellipse 50% 70% at 85% 15%, rgba(45,168,60,0.25), transparent 60%);
 }
 
-.hero {
-  position: relative;
-  z-index: 2;
-  min-height: 100vh;
+/* BACK BUTTON */
+.back-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+
+  width: 44px;
+  height: 44px;
 
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
-  padding: 2rem;
+  text-decoration: none;
+
+  font-size: 1.4rem;
+  font-weight: 900;
+
+  color: var(--g8);
+
+  border-radius: 12px;
+
+  background: rgba(20,66,26,0.4);
+  border: 1px solid rgba(63,209,85,0.25);
+
+  backdrop-filter: blur(8px);
+
+  transition: 0.2s;
+  z-index: 10;
+}
+
+.back-btn:hover {
+  transform: translateY(-3px);
+  border-color: rgba(63,209,85,0.6);
+  box-shadow: 0 0 25px rgba(63,209,85,0.2);
+}
+
+/* CENTER BOX */
+.wrapper {
+  position: relative;
+  z-index: 2;
+
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-box {
@@ -73,260 +102,147 @@ body::before {
 
   backdrop-filter: blur(10px);
 
-  box-shadow:
-    0 0 45px rgba(63,209,85,0.08),
-    0 15px 60px rgba(0,0,0,0.5);
+  box-shadow: 0 0 45px rgba(63,209,85,0.08);
 
-  animation: fadeUp 0.8s ease;
+  transition: transform 0.15s ease;
 }
 
+/* TEXT */
 .badge {
   display: inline-block;
-
   font-size: 0.75rem;
   font-weight: 900;
-
   letter-spacing: 3px;
   text-transform: uppercase;
-
   color: var(--g7);
-
   border: 1px solid rgba(63,209,85,0.35);
-
   padding: 0.4rem 1rem;
-
   border-radius: 999px;
-
   margin-bottom: 1.5rem;
 }
 
 .title {
   font-family: 'Bebas Neue', sans-serif;
-
-  font-size: clamp(4rem, 10vw, 6rem);
-
-  line-height: 0.9;
-
+  font-size: 4.5rem;
   letter-spacing: 4px;
-
-  margin-bottom: 0.7rem;
-
-  background: linear-gradient(160deg, #ffffff 0%, var(--g8) 45%, var(--g6) 100%);
+  background: linear-gradient(160deg,#fff,var(--g8),var(--g6));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  filter: drop-shadow(0 0 35px rgba(63,209,85,0.35));
+  margin-bottom: 0.5rem;
 }
 
 .sub {
   font-size: 0.85rem;
   font-weight: 900;
-
   letter-spacing: 4px;
   text-transform: uppercase;
-
   color: var(--g8);
-
   opacity: 0.6;
-
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
-.input-group {
-  margin-bottom: 1.25rem;
-}
-
+/* INPUT */
 .input-label {
-  display: block;
-
-  margin-bottom: 0.6rem;
-
   font-size: 0.8rem;
   font-weight: 900;
-
   letter-spacing: 2px;
   text-transform: uppercase;
-
   color: var(--g8);
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
 .input {
   width: 100%;
-
-  padding: 1rem 1.2rem;
-
+  padding: 1rem;
   border-radius: 12px;
 
   border: 1px solid rgba(63,209,85,0.2);
-
-  background: rgba(20,66,26,0.45);
+  background: rgba(20,66,26,0.4);
 
   color: white;
-
-  font-size: 1rem;
   font-weight: 800;
 
   outline: none;
-
-  transition: 0.2s;
 }
 
 .input:focus {
   border-color: rgba(63,209,85,0.6);
-  box-shadow: 0 0 25px rgba(63,209,85,0.15);
 }
 
+/* BUTTON */
 .btn {
   width: 100%;
-
-  margin-top: 0.75rem;
+  margin-top: 1rem;
 
   padding: 1rem;
 
   border: none;
-
   border-radius: 12px;
 
   cursor: pointer;
 
-  font-family: 'Exo 2', sans-serif;
-  font-size: 0.9rem;
   font-weight: 900;
-
   letter-spacing: 2px;
   text-transform: uppercase;
 
   color: white;
 
-  background: linear-gradient(135deg, var(--g4), var(--g7));
-
-  box-shadow:
-    0 0 25px rgba(63,209,85,0.25),
-    0 5px 20px rgba(0,0,0,0.35);
+  background: linear-gradient(135deg,var(--g4),var(--g7));
 
   transition: 0.2s;
 }
 
 .btn:hover {
   transform: translateY(-3px);
-
-  box-shadow:
-    0 0 40px rgba(63,209,85,0.4),
-    0 10px 25px rgba(0,0,0,0.4);
 }
 
-.result-box {
+/* RESULT */
+.result {
   margin-top: 1.5rem;
+  padding: 1rem;
 
-  padding: 1.1rem;
-
-  border-radius: 12px;
-
-  background: rgba(20,66,26,0.45);
-
+  background: rgba(20,66,26,0.4);
   border: 1px solid rgba(63,209,85,0.15);
+  border-radius: 12px;
 
   text-align: center;
 }
 
-.result-title {
-  font-size: 0.7rem;
-  font-weight: 900;
-
-  letter-spacing: 2px;
-  text-transform: uppercase;
-
-  color: var(--g7);
-
-  margin-bottom: 0.65rem;
-}
-
 .code {
-  font-family: 'Bebas Neue', sans-serif;
-
+  font-family: 'Bebas Neue';
   font-size: 3rem;
-
-  letter-spacing: 6px;
-
-  color: white;
+  letter-spacing: 5px;
 }
 
-.instructions {
-  margin-top: 1rem;
-
-  font-size: 0.82rem;
-  font-weight: 800;
-
-  color: var(--g9);
-
-  opacity: 0.65;
-
-  line-height: 1.6;
-}
-
-.hidden {
-  display: none;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* fade */
+.hidden { display:none; }
 </style>
 </head>
 
 <body>
 
-<canvas id="snow"></canvas>
+<a class="back-btn" href="index.html">←</a>
 
-<div class="hero">
+<div class="wrapper">
 
   <div class="login-box">
 
-    <div class="badge">🟢 HugoSMP Login</div>
+    <div class="badge">HugoSMP Login</div>
 
-    <h1 class="title">Tanneclan</h1>
+    <div class="title">Tanneclan</div>
 
-    <p class="sub">Minecraft Account verbinden</p>
+    <div class="sub">Minecraft Account verbinden</div>
 
-    <div class="input-group">
-      <label class="input-label">Minecraft Name</label>
+    <label class="input-label">Minecraft Name</label>
 
-      <input
-        type="text"
-        id="mcName"
-        class="input"
-        placeholder="z.B. Pfoersich"
-      >
-    </div>
+    <input id="mcName" class="input" value="Tanneben">
 
-    <button class="btn" onclick="generateCode()">
-      Code generieren
-    </button>
+    <button class="btn" onclick="generateCode()">Code generieren</button>
 
-    <div id="resultBox" class="result-box hidden">
-
-      <div class="result-title">
-        Dein Verifizierungscode
-      </div>
-
-      <div class="code" id="code">
-        0000
-      </div>
-
-      <div class="instructions">
-        Sende ingame folgenden Befehl:<br><br>
-
-        <b>/msg LinkBot CODE</b>
-      </div>
-
+    <div id="result" class="result hidden">
+      <div>Dein Code</div>
+      <div class="code" id="code">0000</div>
     </div>
 
   </div>
@@ -338,94 +254,32 @@ async function generateCode() {
 
   const name = document.getElementById("mcName").value;
 
-  if (!name) {
-    alert("Bitte Minecraft Namen eingeben");
-    return;
-  }
+  const res = await fetch("https://mc-link-backend-production.up.railway.app/create-code", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ name })
+  });
 
-  try {
+  const data = await res.json();
 
-    const res = await fetch(
-      "https://mc-link-backend-production.up.railway.app/create-code",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ name })
-      }
-    );
-
-    const data = await res.json();
-
-    document.getElementById("resultBox").classList.remove("hidden");
-
-    document.getElementById("code").innerText = data.code;
-
-  } catch (err) {
-
-    alert("Backend nicht erreichbar");
-
-    console.error(err);
-  }
+  document.getElementById("result").classList.remove("hidden");
+  document.getElementById("code").innerText = data.code;
 }
 
-const canvas = document.getElementById('snow');
-const ctx = canvas.getContext('2d');
+/* 🎯 CURSOR TILT */
+const box = document.querySelector(".login-box");
 
-let W, H;
+document.addEventListener("mousemove", (e) => {
 
-function resize() {
-  W = canvas.width = window.innerWidth;
-  H = canvas.height = window.innerHeight;
-}
+  const x = (window.innerWidth / 2 - e.clientX) / 30;
+  const y = (window.innerHeight / 2 - e.clientY) / 30;
 
-resize();
+  box.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+});
 
-window.addEventListener('resize', resize);
-
-const flakes = Array.from({length: 130}, () => ({
-  x: Math.random() * window.innerWidth,
-  y: Math.random() * window.innerHeight,
-  r: 1 + Math.random() * 2.5,
-  sx: (Math.random() - 0.5) * 0.45,
-  sy: 0.35 + Math.random() * 0.75,
-  o: 0.15 + Math.random() * 0.5
-}));
-
-function draw() {
-
-  ctx.clearRect(0, 0, W, H);
-
-  ctx.fillStyle = '#fff';
-
-  for (const f of flakes) {
-
-    ctx.globalAlpha = f.o;
-
-    ctx.beginPath();
-    ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-
-    ctx.fill();
-
-    f.x += f.sx;
-    f.y += f.sy;
-
-    if (f.y > H) {
-      f.y = -5;
-      f.x = Math.random() * W;
-    }
-
-    if (f.x > W) f.x = 0;
-    if (f.x < 0) f.x = W;
-  }
-
-  ctx.globalAlpha = 1;
-
-  requestAnimationFrame(draw);
-}
-
-draw();
+document.addEventListener("mouseleave", () => {
+  box.style.transform = "rotateY(0deg) rotateX(0deg)";
+});
 </script>
 
 </body>
